@@ -5,23 +5,23 @@ import { useState } from "react";
 const mockSearchResults: SearchResult[] = [
   {
     imageUrl:
-      "https://n.nordstrommedia.com/it/dc63ebb4-1077-4f75-a67e-3a4848845a99.jpeg?crop=pad&trim=color&w=1950&h=2990&dpr=2",
+      "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcT7RrJeTX8dM5BdFDel_YOMwqzlWAplYYnAYXWLE7GqQFBOc2FJsiGUWKDP49eWapdYCvnrBGsINaSuQwT6Yy-tdV5ajza5vx7T9oI3Z71SbP7FD6Wtwheaig",
     title: "Elegant Leather Tote Bag",
-    price: "$120",
+    price: 120,
     link: "https://www.nordstrom.com/s/essential-soft-leather-tote/8039805?origin=category-personalizedsort&breadcrumb=Home/Women/Handbags/Tote%20Bags&color=200",
   },
   {
     imageUrl:
-      "https://n.nordstrommedia.com/it/dc63ebb4-1077-4f75-a67e-3a4848845a99.jpeg?crop=pad&trim=color&w=1950&h=2990&dpr=2",
+      "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQCB7t_3Tz7fmQlJxQWB-xpYELydFG4fuKjjsldcRUuVJQgchttJQse45dfRygMJupp0fnV5VfH5NarmFZOsLikI9UjfgbXFzyz0A85TKkA53PiB9jczGwIfg",
     title: "Classic Crossbody Purse",
-    price: "$85",
+    price: 85,
     link: "https://example.com/product/classic-crossbody-purse",
   },
   {
     imageUrl:
-      "https://n.nordstrommedia.com/it/dc63ebb4-1077-4f75-a67e-3a4848845a99.jpeg?crop=pad&trim=color&w=1950&h=2990&dpr=2",
+      "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTTisO2MZeII1Ey0OLEzibOtsHdFmaFXJsi2k3TOBkIFo8gF3Rjkr65gdQwD6ZiJ82FXYHzwEr5VLZcv_RNdZUWBXR-hpnBMuphCIRsy32hFJMccC2FaAwZ",
     title: "Chic Quilted Handbag",
-    price: "$150",
+    price: 150,
     link: "https://n.nordstrommedia.com/it/dc63ebb4-1077-4f75-a67e-3a4848845a99.jpeg?crop=pad&trim=color&w=1950&h=2990&dpr=2",
   },
 ];
@@ -29,7 +29,7 @@ const mockSearchResults: SearchResult[] = [
 type SearchResult = {
   imageUrl: string;
   title: string;
-  price: string;
+  price: number;
   link: string;
 };
 
@@ -42,6 +42,7 @@ function App() {
   const [maxPrice, setMaxPrice] = useState<number>(100);
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setSearchResults([]);
     setLoading(true);
     console.log(enteredLink, minPrice, maxPrice);
@@ -84,7 +85,6 @@ function App() {
                 placeholder="Max price($)"
                 value={maxPrice}
                 onChange={(event) => setMaxPrice(Number(event.target.value))}
-                defaultValue={100}
                 required
               />
             </div>
@@ -105,7 +105,7 @@ function App() {
                   <img src={result.imageUrl} alt={result.title} height={150} />
                   <div className="result-info">
                     <h3>{result.title}</h3>
-                    <p>{result.price}</p>
+                    <p>${result.price}</p>
                   </div>
                 </div>
               );

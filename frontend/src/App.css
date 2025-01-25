@@ -8,7 +8,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin:auto;
+  margin-right:auto;
+  margin-left:auto;
+  margin-top: 100px;
   width: 40%;
 }
 
@@ -39,10 +41,12 @@
 }
 
 .results {
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 16px;
   padding: 16px;
+  margin-bottom: 100px;
 }
 
 .result {
